@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list app</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        /*  Include the padding and bptder in an eliment's total width and height*/
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /*Removemargins and padding from the list*/
+        ul {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        /* Style the listittems*/
+        ul li {
+            cursor: pointer;
+            position: relative;
+            padding: 12px 8px 12px 40px;
+            list-style-type: none;
+            background: #eee;
+            font-size: 18px;
+            transition: 0.2s;
+
+        }
+
+        /*set all odd list items to adiffrent color (zebra-stripes)*/
+        ul li:nth-child(odd) {
+            background-color: #67db1a;
+        }
+
+        /*darker background-color on hover*/
+        ul li:hover {
+            background-color: rgb(236, 214, 15);
+        }
+
+
+        /*style the the clse button */
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px 16px 12px 16px;
+
+        }
+
+        .close:hover {
+            background-color: #c21307;
+            color: white;
+        }
+
+        /* style the header */
+        .header {
+            background-color: rgb(17, 226, 10);
+            padding: 30px 40px;
+            color: rgb(223, 243, 39);
+            text-align: center;
+        }
+
+        /* clear floats after the header */
+        .header:after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        /* Style the input */
+        input {
+            margin: 0;
+            border: none;
+            border-radius: 0;
+            width: 75%;
+            padding: 10px;
+            float: left;
+            font-size: 16px;
+        }
+
+        /* Style the "Add" button */
+        .addBtn {
+            padding: 10px;
+            width: 25%;
+            background: #80940e;
+            color: rgb(19, 226, 29);
+            float: left;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 0;
+        }
+
+        .addBtn:hover {
+            background-color: #bbb;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="myDIV" class="header">
+        <h2 style="margin:5px">To Do List App</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="title" id="myInput" placeholder="Title...">
+            <button type="submit" class="addBtn"><i class="fa fa-plus" aria-hidden="true"></i></button>
+        </form>
+    </div>
+
+    <ul id="myUL">
+        {% for todo in todos %}
+        <li>{{todo.title | title}} <span class="close"><a style="text-decoration: none; color: black;"
+                    href="delete/{{todo.id}}"><i class="fa fa-trash-o" style="font-size:26px"></i></a></span></li>
+        {% endfor %}
+    </ul>
+
+    </head>
+
+    <body>
+
+    </body>
+
+</html>
